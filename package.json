@@ -2,6 +2,10 @@
   "name": "amidery-lvl2",
   "version": "1.0.0",
   "description": "\"Project lvl2 'Brain Games' for Hexlet\"",
+  "keywords": [
+    "hexlet",
+    "difference generator"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
