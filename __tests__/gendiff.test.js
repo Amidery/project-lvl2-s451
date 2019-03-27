@@ -1,14 +1,19 @@
 import fs from 'fs';
 import gendiff from '../src';
 
-test('compare JSON files', () => {
-  const expectedResult = fs.readFileSync('__tests__/__fixtures__/result.txt', 'utf-8');
-  const actualResult = gendiff('__tests__/__fixtures__/before.json', '__tests__/__fixtures__/after.json');
-  expect(actualResult).toBe(expectedResult);
-});
+const files = [
+  {
+    file1: '__tests__/__fixtures__/before.json',
+    file2: '__tests__/__fixtures__/after.json',
+  },
+  {
+    file1: '__tests__/__fixtures__/before.yml',
+    file2: '__tests__/__fixtures__/after.yml',
+  },
+];
 
-test('compare YAML files', () => {
+test.each(files)('compare files', ({ file1, file2 }) => {
   const expectedResult = fs.readFileSync('__tests__/__fixtures__/result.txt', 'utf-8');
-  const actualResult = gendiff('__tests__/__fixtures__/before.yml', '__tests__/__fixtures__/after.yml');
+  const actualResult = gendiff(file1, file2);
   expect(actualResult).toBe(expectedResult);
 });
