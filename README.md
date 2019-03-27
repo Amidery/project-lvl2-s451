@@ -9,7 +9,10 @@
 ```
 
 ## How to get a help message
-<a href="https://asciinema.org/a/L8g8wJRih1iRAXl6xNmuuLDQt" target="_blank"><img src="https://asciinema.org/a/L8g8wJRih1iRAXl6xNmuuLDQt.svg" /></a>
+<a href="https://asciinema.org/a/D5jx1gh3RyjOfGmagGFR8e6dM" target="_blank"><img src="https://asciinema.org/a/D5jx1gh3RyjOfGmagGFR8e6dM.svg" /></a>
 
 ## How to compare two json-files
-<a href="https://asciinema.org/a/XqXMjKCKQN9QDKruH1yCri7jd" target="_blank"><img src="https://asciinema.org/a/XqXMjKCKQN9QDKruH1yCri7jd.svg" /></a>
+<a href="https://asciinema.org/a/34hrZqPyD2X4MpbXXmpJHcUXz" target="_blank"><img src="https://asciinema.org/a/34hrZqPyD2X4MpbXXmpJHcUXz.svg" /></a>
+
+## How to compare two yaml-files
+<a href="https://asciinema.org/a/ISrgGJj9IdVEMVmwSeNtzhnLg" target="_blank"><img src="https://asciinema.org/a/ISrgGJj9IdVEMVmwSeNtzhnLg.svg" /></a>
