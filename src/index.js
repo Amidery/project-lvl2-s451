@@ -1,10 +1,5 @@
-import fs from 'fs';
 import _ from 'lodash';
-
-const parse = (pathToFile) => {
-  const fileContent = JSON.parse(fs.readFileSync(pathToFile, 'utf-8'));
-  return fileContent;
-};
+import parse from './parsers';
 
 const gendiff = (pathToFile1, pathToFile2) => {
   const dataBefore = parse(pathToFile1);
