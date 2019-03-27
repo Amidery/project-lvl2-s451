@@ -4,12 +4,10 @@ import path from 'path';
 
 const formats = [
   {
-    name: '.json',
     check: arg => arg === '.json',
     parser: arg => JSON.parse(fs.readFileSync(arg, 'utf-8')),
   },
   {
-    name: '.yml',
     check: arg => arg === '.yml',
     parser: arg => yaml.safeLoad(fs.readFileSync(arg, 'utf-8')),
   },
