@@ -4,8 +4,7 @@
 
 ## How to install
 ```
-	$ npm install amidery-lvl2
-
+$ npm install amidery-lvl2
 ```
 
 ## How to get a help message
@@ -16,3 +15,6 @@
 
 ## How to compare two yaml-files
 <a href="https://asciinema.org/a/ISrgGJj9IdVEMVmwSeNtzhnLg" target="_blank"><img src="https://asciinema.org/a/ISrgGJj9IdVEMVmwSeNtzhnLg.svg" /></a>
+
+## How to compare two ini-files
+<a href="https://asciinema.org/a/PGPhYHDPloPriYKZEM1dyVesm" target="_blank"><img src="https://asciinema.org/a/PGPhYHDPloPriYKZEM1dyVesm.svg" /></a>
