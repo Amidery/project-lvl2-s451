@@ -18,3 +18,6 @@ $ npm install amidery-lvl2
 
 ## How to compare two ini-files
 <a href="https://asciinema.org/a/PGPhYHDPloPriYKZEM1dyVesm" target="_blank"><img src="https://asciinema.org/a/PGPhYHDPloPriYKZEM1dyVesm.svg" /></a>
+
+## How to compare two nested .json, .yml or .ini files
+<a href="https://asciinema.org/a/D8EzZIF4V9Ps4hVzcAnMi52Gn" target="_blank"><img src="https://asciinema.org/a/D8EzZIF4V9Ps4hVzcAnMi52Gn.svg" /></a>
