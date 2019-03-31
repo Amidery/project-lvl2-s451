@@ -11,17 +11,20 @@ const getString = (obj, spacesAmount, render) => {
   const spaces = getSpaces(spacesAmount);
   const value = getValue(obj.value, spacesAmount);
   const updatedValue = getValue(obj.updatedValue, spacesAmount);
-  const children = obj.children.length > 0 ? render(obj.children, spacesAmount + 4) : '';
 
   switch (obj.type) {
+    case 'haschildren':
+      return `${spaces}  ${obj.keyname}: ${render(obj.children, spacesAmount + 4)}`;
     case 'added':
-      return `${spaces}+ ${obj.keyname}: ${value}${children}`;
+      return `${spaces}+ ${obj.keyname}: ${value}`;
     case 'removed':
-      return `${spaces}- ${obj.keyname}: ${value}${children}`;
+      return `${spaces}- ${obj.keyname}: ${value}`;
     case 'updated':
-      return `${spaces}+ ${obj.keyname}: ${updatedValue}${children}\n${spaces}- ${obj.keyname}: ${value}${children}`;
+      return `${spaces}+ ${obj.keyname}: ${updatedValue}\n${spaces}- ${obj.keyname}: ${value}`;
+    case 'unchanged':
+      return `${spaces}  ${obj.keyname}: ${value}`;
     default:
-      return `${spaces}  ${obj.keyname}: ${value}${children}`;
+      throw new Error(`${obj.type} - incorrect node type`);
   }
 };
 

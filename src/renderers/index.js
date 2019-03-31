@@ -1,10 +1,11 @@
-import renderPretty from './renderers/prettyformat';
-import renderPlain from './renderers/plainformat';
+import renderPretty from './prettyformat';
+import renderPlain from './plainformat';
+import renderJSON from './jsonformat';
 
 const outputFormats = {
   pretty: renderPretty,
   plain: renderPlain,
-  json: JSON.stringify,
+  json: renderJSON,
 };
 
 const render = (diffContent, format) => outputFormats[format](diffContent);

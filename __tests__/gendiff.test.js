@@ -1,7 +1,8 @@
 import fs from 'fs';
+import path from 'path';
 import gendiff from '../src';
 
-const path = '__tests__/__fixtures__/';
+const pathToTests = '__tests__/__fixtures__/';
 
 const files = [
   ['before.json', 'after.json', 'pretty', 'resultPretty.txt'],
@@ -13,10 +14,15 @@ const files = [
   ['beforeComplex.json', 'afterComplex.json', 'plain', 'resultComplexPlain.txt'],
   ['beforeComplex.yml', 'afterComplex.yml', 'plain', 'resultComplexPlain.txt'],
   ['beforeComplex.ini', 'afterComplex.ini', 'plain', 'resultComplexPlain.txt'],
+  ['beforeComplex.json', 'afterComplex.json', 'json', 'resultComplexJson.txt'],
+  ['beforeComplex.yml', 'afterComplex.yml', 'json', 'resultComplexJson.txt'],
+  ['beforeComplex.ini', 'afterComplex.ini', 'json', 'resultComplexJson.txt'],
 ];
 
 test.each(files)('compare files', (filepath1, filepath2, format, pathtoresult) => {
-  const expectedResult = fs.readFileSync(path + pathtoresult, 'utf-8');
-  const actualResult = gendiff(path + filepath1, path + filepath2, format);
+  const expectedResult = fs.readFileSync(path.join(pathToTests, pathtoresult), 'utf-8').trim();
+  const actualResult = gendiff(
+    path.join(pathToTests, filepath1), path.join(pathToTests, filepath2), format,
+  );
   expect(actualResult).toBe(expectedResult);
 });

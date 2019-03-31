@@ -8,9 +8,7 @@ const getAST = (data1, data2) => {
   const dataBeforeKeys = Object.keys(data1);
   const dataAfterKeys = Object.keys(data2);
 
-  const uniqueDataKeys = _.flatten(
-    [dataBeforeKeys, dataAfterKeys.filter(key => !_.has(data1, key))],
-  );
+  const uniqueDataKeys = _.union(dataBeforeKeys, dataAfterKeys);
 
   const root = {
     keyname: '',
@@ -23,10 +21,14 @@ const getAST = (data1, data2) => {
   const getDiff = (node, key) => {
     if (_.has(data1, key) === _.has(data2, key)) {
       if (data1[key] instanceof Object && data2[key] instanceof Object) {
-        return { ...node, keyname: key, children: getAST(data1[key], data2[key]) };
+        return {
+          ...node, keyname: key, type: 'haschildren', children: getAST(data1[key], data2[key]),
+        };
       }
       if (data1[key] === data2[key]) {
-        return { ...node, keyname: key, value: data1[key] };
+        return {
+          ...node, keyname: key, type: 'unchanged', value: data1[key],
+        };
       }
       return {
         ...node, keyname: key, type: 'updated', updatedValue: data2[key], value: data1[key],
