@@ -22,5 +22,8 @@ $ npm install amidery-lvl2
 ## How to compare two nested .json, .yml or .ini files
 <a href="https://asciinema.org/a/D8EzZIF4V9Ps4hVzcAnMi52Gn" target="_blank"><img src="https://asciinema.org/a/D8EzZIF4V9Ps4hVzcAnMi52Gn.svg" /></a>
 
-## How to use different output formats
+## How to use 'pretty' and 'plain' output formats
 <a href="https://asciinema.org/a/RIouaocYDWnYfpXhINEmHMrur" target="_blank"><img src="https://asciinema.org/a/RIouaocYDWnYfpXhINEmHMrur.svg" /></a>
+
+## How to use 'json' output format
+<a href="https://asciinema.org/a/Jnnd7NaHP4PAyyenU7iSVzE0i" target="_blank"><img src="https://asciinema.org/a/Jnnd7NaHP4PAyyenU7iSVzE0i.svg" /></a>
