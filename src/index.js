@@ -2,7 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import parse from './parsers';
-import render from './renderer';
+import render from './renderers';
 
 const getAST = (data1, data2) => {
   const dataBeforeKeys = Object.keys(data1);
@@ -15,6 +15,7 @@ const getAST = (data1, data2) => {
   const root = {
     keyname: '',
     value: '',
+    updatedValue: '',
     type: '',
     children: [],
   };
@@ -27,11 +28,9 @@ const getAST = (data1, data2) => {
       if (data1[key] === data2[key]) {
         return { ...node, keyname: key, value: data1[key] };
       }
-      return [{
-        ...node, keyname: key, type: 'added', value: data2[key],
-      }, {
-        ...node, keyname: key, type: 'removed', value: data1[key],
-      }];
+      return {
+        ...node, keyname: key, type: 'updated', updatedValue: data2[key], value: data1[key],
+      };
     }
     if (!_.has(data2, key)) {
       return {
@@ -50,11 +49,11 @@ const getAST = (data1, data2) => {
 const getContent = filepath => fs.readFileSync(filepath, 'utf-8');
 const getExt = filepath => path.extname(filepath);
 
-const gendiff = (pathToFile1, pathToFile2) => {
+const gendiff = (pathToFile1, pathToFile2, format) => {
   const dataBefore = parse(getContent(pathToFile1), getExt(pathToFile1));
   const dataAfter = parse(getContent(pathToFile2), getExt(pathToFile2));
   const ast = getAST(dataBefore, dataAfter);
-  return render(ast);
+  return render(ast, format);
 };
 
 export default gendiff;
