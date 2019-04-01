@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const getValue = (value) => {
   if (value instanceof Object) {
     return '[complex value]';
@@ -10,13 +12,13 @@ const getString = (obj, keyname = '') => {
 
   switch (obj.type) {
     case 'haschildren':
-      return obj.children.map(child => getString(child, `${newKeyName}.`)).filter(element => element !== '').join('\n');
+      return obj.children.map(child => getString(child, `${newKeyName}.`));
     case 'added':
-      return `Property '${newKeyName}' was added with value: ${getValue(obj.value)}`;
+      return `Property '${newKeyName}' was added with value: ${getValue(obj.newValue)}`;
     case 'removed':
       return `Property '${newKeyName}' was removed`;
     case 'updated':
-      return `Property '${newKeyName}' was updated. From ${getValue(obj.value)} to ${getValue(obj.updatedValue)}`;
+      return `Property '${newKeyName}' was updated. From ${getValue(obj.oldValue)} to ${getValue(obj.newValue)}`;
     case 'unchanged':
       return '';
     default:
@@ -25,7 +27,9 @@ const getString = (obj, keyname = '') => {
 };
 
 const renderPlain = (ast) => {
-  const result = ast.map(obj => getString(obj)).filter(element => element !== '').join('\n');
+  const result = _.flattenDeep(ast.map(obj => getString(obj)))
+    .filter(element => element !== '')
+    .join('\n');
   return result;
 };
 

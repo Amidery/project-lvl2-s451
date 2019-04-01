@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const getSpaces = spacesAmount => ' '.repeat(spacesAmount);
 
 const getValue = (value, spacesAmount) => {
@@ -9,27 +11,27 @@ const getValue = (value, spacesAmount) => {
 
 const getString = (obj, spacesAmount, render) => {
   const spaces = getSpaces(spacesAmount);
-  const value = getValue(obj.value, spacesAmount);
-  const updatedValue = getValue(obj.updatedValue, spacesAmount);
+  const oldValue = getValue(obj.oldValue, spacesAmount);
+  const newValue = getValue(obj.newValue, spacesAmount);
 
   switch (obj.type) {
     case 'haschildren':
       return `${spaces}  ${obj.keyname}: ${render(obj.children, spacesAmount + 4)}`;
     case 'added':
-      return `${spaces}+ ${obj.keyname}: ${value}`;
+      return `${spaces}+ ${obj.keyname}: ${newValue}`;
     case 'removed':
-      return `${spaces}- ${obj.keyname}: ${value}`;
+      return `${spaces}- ${obj.keyname}: ${oldValue}`;
     case 'updated':
-      return `${spaces}+ ${obj.keyname}: ${updatedValue}\n${spaces}- ${obj.keyname}: ${value}`;
+      return [`${spaces}+ ${obj.keyname}: ${newValue}`, `${spaces}- ${obj.keyname}: ${oldValue}`];
     case 'unchanged':
-      return `${spaces}  ${obj.keyname}: ${value}`;
+      return `${spaces}  ${obj.keyname}: ${oldValue}`;
     default:
       throw new Error(`${obj.type} - incorrect node type`);
   }
 };
 
 const renderPretty = (ast, spacesAmount = 2) => {
-  const result = ast.map(obj => getString(obj, spacesAmount, renderPretty));
+  const result = _.flatten(ast.map(obj => getString(obj, spacesAmount, renderPretty)));
   return ['{', ...result, `${getSpaces(spacesAmount - 2)}}`].join('\n');
 };
 

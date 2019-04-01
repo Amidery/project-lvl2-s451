@@ -12,8 +12,8 @@ const getAST = (data1, data2) => {
 
   const root = {
     keyname: '',
-    value: '',
-    updatedValue: '',
+    oldValue: '',
+    newValue: '',
     type: '',
     children: [],
   };
@@ -27,24 +27,24 @@ const getAST = (data1, data2) => {
       }
       if (data1[key] === data2[key]) {
         return {
-          ...node, keyname: key, type: 'unchanged', value: data1[key],
+          ...node, keyname: key, type: 'unchanged', oldValue: data1[key],
         };
       }
       return {
-        ...node, keyname: key, type: 'updated', updatedValue: data2[key], value: data1[key],
+        ...node, keyname: key, type: 'updated', oldValue: data1[key], newValue: data2[key],
       };
     }
     if (!_.has(data2, key)) {
       return {
-        ...node, keyname: key, type: 'removed', value: data1[key],
+        ...node, keyname: key, type: 'removed', oldValue: data1[key],
       };
     }
     return {
-      ...node, keyname: key, type: 'added', value: data2[key],
+      ...node, keyname: key, type: 'added', newValue: data2[key],
     };
   };
 
-  const ast = _.flattenDeep(uniqueDataKeys.map(key => getDiff(root, key)));
+  const ast = uniqueDataKeys.map(key => getDiff(root, key));
   return ast;
 };
 
